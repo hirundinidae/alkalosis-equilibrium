@@ -1,22 +1,22 @@
 let biCarbGraph;
 let carAcidGraph;
 function preload() {
-  biCarbGraph = loadImage('assets/graph1.png');
-  carAcidGraph = loadImage('assets/graph2.png');
-  graph = loadImage('assets/Graph of Alkalosis.png');
-  phscale = loadImage('assets/pH scale.png');
-  equation = loadImage('assets/equation.png');
-  reversible = loadImage('assets/reversible.png');
-  closedsystem = loadImage('assets/closedsystem.png');
-  thermometer = loadImage('assets/thermometer.png');
-  denaturation = loadImage('assets/denaturation.gif');
+  biCarbGraph = loadImage("assets/graph1.png");
+  carAcidGraph = loadImage("assets/graph2.png");
+  graph = loadImage("assets/Graph of Alkalosis.png");
+  phscale = loadImage("assets/pH scale.png");
+  equation = loadImage("assets/equation.png");
+  reversible = loadImage("assets/reversible.png");
+  closedsystem = loadImage("assets/closedsystem.png");
+  thermometer = loadImage("assets/thermometer.png");
+  denaturation = loadImage("assets/denaturation.gif");
 }
 
 function setup() {
   createCanvas(800, 500);
 }
 
-let state = 3; // set to 1, etc to test screen
+let state = 5; // set to 1, etc to test screen
 function draw() {
   background("#F4CCCC");
   drawBackground();
@@ -68,8 +68,14 @@ function alkalosis() {
     100,
     780
   ); //text(STRING, startX, startY, width of textbox)
-  image(equation, 100, 190, equation.width*5/8, equation.height*5/8);
-  image(graph, 100, 150, graph.width*5/8, graph.height*5/8);
+  image(
+    equation,
+    100,
+    190,
+    (equation.width * 5) / 8,
+    (equation.height * 5) / 8
+  );
+  image(graph, 100, 150, (graph.width * 5) / 8, (graph.height * 5) / 8);
   textSize(12);
   text("Weak Acid", -225, 250, 780); //text(STRING, startX, startY, width of textbox)
   text("Conjugate Base", 95, 250, 780); //text(STRING, startX, startY, width of textbox)
@@ -86,15 +92,32 @@ function equilibrium() {
     125,
     780
   ); //text(STRING, startX, startY, width of textbox)
-  image(reversible, 100, 250, reversible.width*6/5, reversible.height*6/5);
-  image(closedsystem, 300, 250, closedsystem.width*5/8, closedsystem.height*5/8);
-  image(thermometer, 550, 250, thermometer.width*1/6, thermometer.height*1/6);
+  image(
+    reversible,
+    100,
+    250,
+    (reversible.width * 6) / 5,
+    (reversible.height * 6) / 5
+  );
+  image(
+    closedsystem,
+    300,
+    250,
+    (closedsystem.width * 5) / 8,
+    (closedsystem.height * 5) / 8
+  );
+  image(
+    thermometer,
+    550,
+    250,
+    (thermometer.width * 1) / 6,
+    (thermometer.height * 1) / 6
+  );
   textSize(12);
   text("1. A reversible reaction ", -235, 400, 780); //text(STRING, startX, startY, width of textbox)
   text("2. A closed system", -20, 400, 780); //text(STRING, startX, startY, width of textbox)
   text("3. A constant temperature", 190, 400, 780); //text(STRING, startX, startY, width of textbox)
   textSize(18);
-  // image(denaturation, 40,230);
 }
 function equilibriumBlood() {
   fill(0);
@@ -107,12 +130,19 @@ function equilibriumBlood() {
     125,
     780
   ); //text(STRING, startX, startY, width of textbox)
-  image(denaturation, 240, 250, denaturation.width*6/5, denaturation.height*6/5);
+  image(
+    denaturation,
+    240,
+    250,
+    (denaturation.width * 6) / 5,
+    (denaturation.height * 6) / 5
+  );
   textSize(12);
-  text("An animation of a protein changing shape, which can be caused by a change in pH. This change in shape can affect its ability to function.", 
-    240, 
-    430, 
-    denaturation.width*6/5
+  text(
+    "An animation of a protein changing shape, which can be caused by a change in pH. This change in shape can affect its ability to function.",
+    240,
+    430,
+    (denaturation.width * 6) / 5
   ); //text(STRING, startX, startY, width of textbox)
   textSize(18);
 }
@@ -133,6 +163,20 @@ function alkalosisCauses() {
   carAcidGraph.resize(300, 0);
   image(carAcidGraph, 450, 230);
   text("If carbonic acid is removed", 470, 460);
+}
+
+function buffer() {
+  title("Your Body's Natural Buffer System");
+  textSize(18);
+  textAlign(CENTER);
+  text(
+    "Concerned that your blood's pH will suddenly skyrocket? Don't fear! Your blood is a buffer solution that resists small changes in acid or base. In the buffer solution, there exists both the weak acid and its conjugate base, allowing for the neutralization of any added acid or base. This means that, normally, your blood will be kept at a constant pH between 7.2 and 7.4. ",
+    10,
+    125,
+    780
+  );
+  phscale.resize(300,0);
+  image(phscale, 470,460);
 }
 
 function title(titleText) {
