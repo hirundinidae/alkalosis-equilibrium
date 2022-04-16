@@ -1,7 +1,7 @@
 function setup() {
     createCanvas(800, 500);
 }
-let state = 0; // set to 1, etc to test screen 
+let state = 1; // set to 1, etc to test screen 
 function draw() {
     background('#F4CCCC');
     drawBackground();
@@ -47,14 +47,19 @@ function equilibrium() { //the opening layout (before you click on anything) [id
 }
 function alkalosis() { //will finish later, too lazy to do it rn
     fill(0);
-    textSize(45);
-    textAlign(CENTER);
-    textWrap(WORD);
-    text('Alkalosis', 400, 50);
+    title('Alkalosis'); 
     textSize(18);
     textAlign(CENTER);
     text('A condition where the pH of blood is too high (above 7.4). \n When alkalosis happens, there is more HCO3- (conjugate base) relative to the amount of H2CO3 (weak acid). This also increases the relative concentration of hydroxide ions OH-, making the pH of the blood higher than normal.', 10, 100, 780); //text(STRING, startX, startY, width of textbox)
 }
+function title (titleText) {
+    textSize(45); 
+    textAlign(CENTER); 
+    textWrap(WORD); 
+    text(titleText, 400,50); 
+}
+
+
 function textBox () {
     fill(244,146,146,240);
     rect(10,10,780,480);
