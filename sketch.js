@@ -16,7 +16,7 @@ function setup() {
   createCanvas(800, 500);
 }
 
-let state = 2; // set to 1, etc to test screen
+let state = 3; // set to 1, etc to test screen
 function draw() {
   background("#F4CCCC");
   drawBackground();
@@ -95,6 +95,26 @@ function equilibrium() {
   text("3. A constant temperature", 190, 400, 780); //text(STRING, startX, startY, width of textbox)
   textSize(18);
   // image(denaturation, 40,230);
+}
+function equilibriumBlood() {
+  fill(0);
+  title("Equilibrium in Blood");
+  textSize(18);
+  textAlign(CENTER);
+  text(
+    "Blood contains carbonic acid H2CO3, a weak acid that dissociates into HCO3-, its conjugate base. In equilibrium, your blood has a pH of 7.2 ~ 7.4.\nIt is important to maintain equilibrium in our blood. Otherwise, the pH may change, affecting enzyme substrate binding, hormone binding, membrane transport, and more.",
+    10,
+    125,
+    780
+  ); //text(STRING, startX, startY, width of textbox)
+  image(denaturation, 240, 250, denaturation.width*6/5, denaturation.height*6/5);
+  textSize(12);
+  text("An animation of a protein changing shape, which can be caused by a change in pH. This change in shape can affect its ability to function.", 
+    240, 
+    430, 
+    denaturation.width*6/5
+  ); //text(STRING, startX, startY, width of textbox)
+  textSize(18);
 }
 
 function alkalosisCauses() {
