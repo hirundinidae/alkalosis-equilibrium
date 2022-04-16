@@ -10,13 +10,15 @@ function preload() {
   closedsystem = loadImage("assets/closedsystem.png");
   thermometer = loadImage("assets/thermometer.png");
   denaturation = loadImage("assets/denaturation.gif");
+  font = loadFont("assets/static/Montserrat-Light.ttf");
 }
 
 function setup() {
   createCanvas(800, 500);
+  textFont(font);
 }
 
-let state = 5; // set to 1, etc to test screen
+let state = 1; // set to 1, etc to test screen
 function draw() {
   background("#F4CCCC");
   drawBackground();
@@ -57,10 +59,9 @@ function titleCard() {
 }
 
 function alkalosis() {
-  //will finish later, too lazy to do it rn
   fill(0);
   title("Alkalosis");
-  textSize(18);
+  textSize(15);
   textAlign(CENTER);
   text(
     "A condition where the pH of blood is too high (above 7.4). \n When alkalosis happens, there is more HCO3- (conjugate base) relative to the amount of H2CO3 (weak acid). This also increases the relative concentration of hydroxide ions OH-, making the pH of the blood higher than normal.",
@@ -76,15 +77,15 @@ function alkalosis() {
     (equation.height * 5) / 8
   );
   image(graph, 100, 150, (graph.width * 5) / 8, (graph.height * 5) / 8);
-  textSize(12);
+  textSize(10);
   text("Weak Acid", -225, 250, 780); //text(STRING, startX, startY, width of textbox)
   text("Conjugate Base", 95, 250, 780); //text(STRING, startX, startY, width of textbox)
-  textSize(18);
+  textSize(15);
 }
 function equilibrium() {
   fill(0);
   title("What is Equilibrium?");
-  textSize(18);
+  textSize(15);
   textAlign(CENTER);
   text(
     "Equilibrium is a state of a chemical reaction where the rates of the forward and reverse reactions are equal. An equilibrium requires the following: ",
@@ -113,16 +114,16 @@ function equilibrium() {
     (thermometer.width * 1) / 6,
     (thermometer.height * 1) / 6
   );
-  textSize(12);
+  textSize(10);
   text("1. A reversible reaction ", -235, 400, 780); //text(STRING, startX, startY, width of textbox)
   text("2. A closed system", -20, 400, 780); //text(STRING, startX, startY, width of textbox)
   text("3. A constant temperature", 190, 400, 780); //text(STRING, startX, startY, width of textbox)
-  textSize(18);
+  textSize(15);
 }
 function equilibriumBlood() {
   fill(0);
   title("Equilibrium in Blood");
-  textSize(18);
+  textSize(15);
   textAlign(CENTER);
   text(
     "Blood contains carbonic acid H2CO3, a weak acid that dissociates into HCO3-, its conjugate base. In equilibrium, your blood has a pH of 7.2 ~ 7.4.\nIt is important to maintain equilibrium in our blood. Otherwise, the pH may change, affecting enzyme substrate binding, hormone binding, membrane transport, and more.",
@@ -137,19 +138,19 @@ function equilibriumBlood() {
     (denaturation.width * 6) / 5,
     (denaturation.height * 6) / 5
   );
-  textSize(12);
+  textSize(10);
   text(
     "An animation of a protein changing shape, which can be caused by a change in pH. This change in shape can affect its ability to function.",
     240,
     430,
     (denaturation.width * 6) / 5
   ); //text(STRING, startX, startY, width of textbox)
-  textSize(18);
+  textSize(15);
 }
 
 function alkalosisCauses() {
   title("Causes of Alkalosis");
-  textSize(16);
+  textSize(15);
   textAlign(LEFT);
   text(
     "Alkalosis can be due to many reasons, including:\n 1. \t Consuming bases, which increases the OH- concentration. This can occur when baking soda, which contains bicarbonate, is accidentally consumed, or when one overdoses on antacids. \n 2. \t Decrease of carbon dioxide (CO2), which has a separate equilibrium with carbonic acid, preventing the formation of carbonic acid (H2CO3), decreasing the amount of acid while the existing OH- ions remain. This raises the pH. Hyperventilation is a possible cause of carbon dioxide decrease.",
@@ -167,7 +168,7 @@ function alkalosisCauses() {
 
 function buffer() {
   title("Your Body's Natural Buffer System");
-  textSize(18);
+  textSize(15);
   textAlign(CENTER);
   text(
     "Concerned that your blood's pH will suddenly skyrocket? Don't fear! Your blood is a buffer solution that resists small changes in acid or base. In the buffer solution, there exists both the weak acid and its conjugate base, allowing for the neutralization of any added acid or base.",
@@ -186,7 +187,7 @@ function buffer() {
 }
 
 function title(titleText) {
-  textSize(45);
+  textSize(40);
   textAlign(CENTER);
   textWrap(WORD);
   text(titleText, 400, 50);
