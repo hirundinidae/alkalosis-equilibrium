@@ -7,13 +7,18 @@ function preload() {
   carAcidGraph = loadImage(
     "https://media.discordapp.net/attachments/630561058465120269/964944646398705734/graph2.png?width=320&height=242"
   );
+  graph = loadImage('Graph of Alkalosis.png');
+  phscale = loadImage('pH scale.png');
+  equation = loadImage('equation.png');
+  // denaturation = createImg('denaturation.gif');
+  // gonna have to figure the gif thing out
 }
 
 function setup() {
   createCanvas(800, 500);
 }
 
-let state = 4; // set to 1, etc to test screen
+let state = 1; // set to 1, etc to test screen
 function draw() {
   background("#F4CCCC");
   drawBackground();
@@ -69,6 +74,12 @@ function alkalosis() {
     100,
     780
   ); //text(STRING, startX, startY, width of textbox)
+  image(equation, 100, 190, equation.width*5/8, equation.height*5/8);
+  image(graph, 100, 150, graph.width*5/8, graph.height*5/8);
+  textSize(12);
+  text("Weak Acid", -225, 250, 780); //text(STRING, startX, startY, width of textbox)
+  text("Conjugate Base", 95, 250, 780); //text(STRING, startX, startY, width of textbox)
+  textSize(18);
 }
 
 function alkalosisCauses() {
