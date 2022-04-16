@@ -1,20 +1,15 @@
 let biCarbGraph;
-let carAcidGraph; 
+let carAcidGraph;
 function preload() {
-  biCarbGraph = loadImage(
-    "https://media.discordapp.net/attachments/630561058465120269/964944646620995634/graph1.png?width=325&height=242"
-  );
-  carAcidGraph = loadImage(
-    "https://media.discordapp.net/attachments/630561058465120269/964944646398705734/graph2.png?width=320&height=242"
-  );
-  graph = loadImage('Graph of Alkalosis.png');
-  phscale = loadImage('pH scale.png');
-  equation = loadImage('equation.png');
-  reversible = loadImage('reversible.png');
-  closedsystem = loadImage('closedsystem.png');
-  thermometer = loadImage('thermometer.png');
-  // denaturation = createImg('denaturation.gif');
-  // gonna have to figure the gif thing out
+  biCarbGraph = loadImage('assets/graph1.png');
+  carAcidGraph = loadImage('assets/graph2.png');
+  graph = loadImage('assets/Graph of Alkalosis.png');
+  phscale = loadImage('assets/pH scale.png');
+  equation = loadImage('assets/equation.png');
+  reversible = loadImage('assets/reversible.png');
+  closedsystem = loadImage('assets/closedsystem.png');
+  thermometer = loadImage('assets/thermometer.png');
+  denaturation = loadImage('assets/denaturation.gif');
 }
 
 function setup() {
@@ -99,6 +94,7 @@ function equilibrium() {
   text("2. A closed system", -20, 400, 780); //text(STRING, startX, startY, width of textbox)
   text("3. A constant temperature", 190, 400, 780); //text(STRING, startX, startY, width of textbox)
   textSize(18);
+  // image(denaturation, 40,230);
 }
 
 function alkalosisCauses() {
