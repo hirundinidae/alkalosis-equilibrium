@@ -10,6 +10,9 @@ function preload() {
   graph = loadImage('Graph of Alkalosis.png');
   phscale = loadImage('pH scale.png');
   equation = loadImage('equation.png');
+  reversible = loadImage('reversible.png');
+  closedsystem = loadImage('closedsystem.png');
+  thermometer = loadImage('thermometer.png');
   // denaturation = createImg('denaturation.gif');
   // gonna have to figure the gif thing out
 }
@@ -18,7 +21,7 @@ function setup() {
   createCanvas(800, 500);
 }
 
-let state = 1; // set to 1, etc to test screen
+let state = 2; // set to 1, etc to test screen
 function draw() {
   background("#F4CCCC");
   drawBackground();
@@ -58,10 +61,6 @@ function titleCard() {
   //check mouse collisions for each of the other states
 }
 
-function equilibrium() {
-  //the opening layout (before you click on anything) [idk what to call it]
-}
-
 function alkalosis() {
   //will finish later, too lazy to do it rn
   fill(0);
@@ -79,6 +78,26 @@ function alkalosis() {
   textSize(12);
   text("Weak Acid", -225, 250, 780); //text(STRING, startX, startY, width of textbox)
   text("Conjugate Base", 95, 250, 780); //text(STRING, startX, startY, width of textbox)
+  textSize(18);
+}
+function equilibrium() {
+  fill(0);
+  title("What is Equilibrium?");
+  textSize(18);
+  textAlign(CENTER);
+  text(
+    "Equilibrium is a state of a chemical reaction where the rates of the forward and reverse reactions are equal. An equilibrium requires the following: ",
+    10,
+    125,
+    780
+  ); //text(STRING, startX, startY, width of textbox)
+  image(reversible, 100, 250, reversible.width*6/5, reversible.height*6/5);
+  image(closedsystem, 300, 250, closedsystem.width*5/8, closedsystem.height*5/8);
+  image(thermometer, 550, 250, thermometer.width*1/6, thermometer.height*1/6);
+  textSize(12);
+  text("1. A reversible reaction ", -235, 400, 780); //text(STRING, startX, startY, width of textbox)
+  text("2. A closed system", -20, 400, 780); //text(STRING, startX, startY, width of textbox)
+  text("3. A constant temperature", 190, 400, 780); //text(STRING, startX, startY, width of textbox)
   textSize(18);
 }
 
