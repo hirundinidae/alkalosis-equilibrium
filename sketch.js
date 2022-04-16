@@ -18,15 +18,15 @@ function setup() {
   textFont(font);
 }
 
-let state = 6; // set to 1, etc to test screen
+let state = 0;
 function draw() {
   background("#F4CCCC");
   drawBackground();
+  if (state !=0 )
+  textBox();
   if (state == 0) {
     titleCard();
-  } else textBox();
-
-  if (state == 1) {
+  } else if (state == 1) {
     alkalosis();
   } else if (state == 2) {
     equilibrium();
@@ -50,16 +50,49 @@ function mouseClicked() {
       // boundaries set by white rect behind the text
       state = 0;
     }
+  } else if (state == 0) {
+    if (
+      mouseX >= 300 &&
+      mouseX <= 300 + 200 &&
+      mouseY >= 10 &&
+      mouseY <= 1 + 50
+    ) {
+      state = 1;
+    }
   }
+  console.log(mouseX, mouseY);
 }
-
+let clicks = [
+  [300, 10, 200, 50], // Alkalosis
+  [15, 120, 150, 40], // equilibrium
+  [15, 270, 305, 40], // in the blood
+  [280, 370, 240, 40], // causes of alkalosis
+  [515, 270, 280, 40] // natural buffer
+];
 function titleCard() {
   //the opening layout (before you click on anything) [idk what to call it]
-  //check mouse collisions for each of the other states
+  //check mouse collisions for each of the other state
+  textSize(45);
+  textAlign(CENTER);
+  textWrap(WORD);
+  fill(255);
+  rect(300, 10, 200, 50); // Alkalosis
+  rect(15, 120, 150, 40); // equilibrium
+  rect(15, 270, 305, 40); // in the blood
+  rect(280, 370, 240, 40); // causes of alkalosis
+  rect(515, 270, 280, 40); // natural buffer
+  fill(0);
+  text("Alkalosis", 400, 50);
+  textSize(24);
+  text("Causes of Alkalosis", 400, 400);
+  textAlign(LEFT);
+  text("Equilibrium", 20, 150);
+  text("Equilibrium In The Blood", 20, 300);
+  textAlign(RIGHT);
+  text("Body's Natural Buffer", 780, 300);
 }
 
 function alkalosis() {
-  fill(0);
   title("Alkalosis");
   textSize(15);
   textAlign(CENTER);
@@ -190,18 +223,53 @@ function glossary() {
   title("Glossary");
   textSize(15);
   textAlign(LEFT);
-  text( "Carbonic Acid: a weak acid present in blood with the chemical formula H2CO3. It dissociates into bicarbonate ions and can affect the pH of blood.", 10, 125, 780);
-  text( "Bicarbonate: a weak acid present in blood with the chemical formula HCO3-. It is the conjugate base of carbonic acid.", 10, 175, 780);
-  text( "pH: a quantitative measure of the acidity of an aqueous solution. It can be thought of as the “power of hydrogen.” Numerically, it is represented as the negative log of the concentration of hydronium ions (pH = -log[H3O+]).", 10, 225, 780);
-  text( "Alkalosis: a condition in which the blood pH is too high.", 10, 295, 780);
-  text( "Solution: a mixture containing a “minor” component (the solute) dissolved within a “major” component (the solvent).", 10, 325, 780);
-  text( "Basic Solution: a solution containing more OH- (hydroxide) ions than H3O+ (hydronium) ions. Its pH is above 7.", 10, 375, 780);
-  text( "Acidic Solution: a solution containing more H3O+ (hydronium) ions than OH- (hydroxide) ions. Its pH is below 7.", 10, 425, 780);
+  text(
+    "Carbonic Acid: a weak acid present in blood with the chemical formula H2CO3. It dissociates into bicarbonate ions and can affect the pH of blood.",
+    10,
+    125,
+    780
+  );
+  text(
+    "Bicarbonate: a weak acid present in blood with the chemical formula HCO3-. It is the conjugate base of carbonic acid.",
+    10,
+    175,
+    780
+  );
+  text(
+    "pH: a quantitative measure of the acidity of an aqueous solution. It can be thought of as the “power of hydrogen.” Numerically, it is represented as the negative log of the concentration of hydronium ions (pH = -log[H3O+]).",
+    10,
+    225,
+    780
+  );
+  text(
+    "Alkalosis: a condition in which the blood pH is too high.",
+    10,
+    295,
+    780
+  );
+  text(
+    "Solution: a mixture containing a “minor” component (the solute) dissolved within a “major” component (the solvent).",
+    10,
+    325,
+    780
+  );
+  text(
+    "Basic Solution: a solution containing more OH- (hydroxide) ions than H3O+ (hydronium) ions. Its pH is above 7.",
+    10,
+    375,
+    780
+  );
+  text(
+    "Acidic Solution: a solution containing more H3O+ (hydronium) ions than OH- (hydroxide) ions. Its pH is below 7.",
+    10,
+    425,
+    780
+  );
 }
-
 
 function title(titleText) {
   textSize(40);
+  fill(0);
   textAlign(CENTER);
   textWrap(WORD);
   text(titleText, 400, 50);
@@ -213,9 +281,10 @@ function textBox() {
   //fill(255);
   //rect(760,20,30);
   fill(0);
-  textAlign(LEFT, TOP);
+  textAlign(LEFT);
+  // textAlign(LEFT, TOP);
   textSize(24);
-  text("X", 760, 30);
+  text("X", 760, 50);
 }
 
 var cells = [
