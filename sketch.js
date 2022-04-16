@@ -18,7 +18,7 @@ function setup() {
   textFont(font);
 }
 
-let state = 1; // set to 1, etc to test screen
+let state = 6; // set to 1, etc to test screen
 function draw() {
   background("#F4CCCC");
   drawBackground();
@@ -185,6 +185,20 @@ function buffer() {
   phscale.resize(700, 0);
   image(phscale, 50, 350);
 }
+
+function glossary() {
+  title("Glossary");
+  textSize(15);
+  textAlign(LEFT);
+  text( "Carbonic Acid: a weak acid present in blood with the chemical formula H2CO3. It dissociates into bicarbonate ions and can affect the pH of blood.", 10, 125, 780);
+  text( "Bicarbonate: a weak acid present in blood with the chemical formula HCO3-. It is the conjugate base of carbonic acid.", 10, 175, 780);
+  text( "pH: a quantitative measure of the acidity of an aqueous solution. It can be thought of as the “power of hydrogen.” Numerically, it is represented as the negative log of the concentration of hydronium ions (pH = -log[H3O+]).", 10, 225, 780);
+  text( "Alkalosis: a condition in which the blood pH is too high.", 10, 295, 780);
+  text( "Solution: a mixture containing a “minor” component (the solute) dissolved within a “major” component (the solvent).", 10, 325, 780);
+  text( "Basic Solution: a solution containing more OH- (hydroxide) ions than H3O+ (hydronium) ions. Its pH is above 7.", 10, 375, 780);
+  text( "Acidic Solution: a solution containing more H3O+ (hydronium) ions than OH- (hydroxide) ions. Its pH is below 7.", 10, 425, 780);
+}
+
 
 function title(titleText) {
   textSize(40);
