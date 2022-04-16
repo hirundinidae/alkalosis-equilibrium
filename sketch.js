@@ -170,13 +170,19 @@ function buffer() {
   textSize(18);
   textAlign(CENTER);
   text(
-    "Concerned that your blood's pH will suddenly skyrocket? Don't fear! Your blood is a buffer solution that resists small changes in acid or base. In the buffer solution, there exists both the weak acid and its conjugate base, allowing for the neutralization of any added acid or base. This means that, normally, your blood will be kept at a constant pH between 7.2 and 7.4. ",
+    "Concerned that your blood's pH will suddenly skyrocket? Don't fear! Your blood is a buffer solution that resists small changes in acid or base. In the buffer solution, there exists both the weak acid and its conjugate base, allowing for the neutralization of any added acid or base.",
     10,
     125,
     780
   );
-  phscale.resize(300,0);
-  image(phscale, 470,460);
+  text(
+    " This means that, normally, your blood will be kept at a constant pH between 7.2 and 7.4. ",
+    10,
+    240,
+    780
+  );
+  phscale.resize(700, 0);
+  image(phscale, 50, 350);
 }
 
 function title(titleText) {
