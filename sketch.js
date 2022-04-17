@@ -6,6 +6,7 @@ function preload() {
   graph = loadImage("assets/Graph of Alkalosis.png");
   phscale = loadImage("assets/pH scale.png");
   equation = loadImage("assets/equation.png");
+  equationSmall = loadImage("assets/equation.png");
   reversible = loadImage("assets/reversible.png");
   closedsystem = loadImage("assets/closedsystem.png");
   thermometer = loadImage("assets/thermometer.png");
@@ -48,17 +49,15 @@ function checkCursor() {
     if (mouseX >= 760 && mouseX <= 780 && mouseY >= 30 && mouseY <= 50) {
       cursor(HAND);
       fill(255);
-      rect(755,25,25,33);
-      fill(255,0,0);
+      rect(755, 25, 25, 33);
+      fill(255, 0, 0);
       textAlign(LEFT);
       textStyle(BOLD);
       textSize(24);
       text("X", 760, 50);
       textStyle(NORMAL);
-    }
-    else
-    cursor(AUTO);
-  } else if (state==0) {
+    } else cursor(AUTO);
+  } else if (state == 0) {
     for (let i = 0; i < clicks.length; ++i) {
       if (
         mouseX >= clicks[i][0] &&
@@ -67,21 +66,18 @@ function checkCursor() {
         mouseY <= clicks[i][1] + clicks[i][3]
       ) {
         cursor(HAND);
-        fill(253, 255, 133,100);
-        rect(clicks[i][0],clicks[i][1],clicks[i][2],clicks[i][3]);
+        fill(253, 255, 133, 100);
+        rect(clicks[i][0], clicks[i][1], clicks[i][2], clicks[i][3]);
         return;
       }
     }
     cursor(AUTO);
   }
-
 }
 
 function mouseClicked() {
-  // add more mouseClicked events according to state (eg. slider only on titleScreen)
   if (state != 0) {
     if (mouseX >= 760 && mouseX <= 780 && mouseY >= 30 && mouseY <= 50) {
-      // boundaries set by white rect behind the text
       state = 0;
     }
   } else if (state == 0) {
@@ -126,6 +122,10 @@ function titleCard() {
   text("Equilibrium In The Blood", 20, 300);
   textAlign(RIGHT);
   text("Body's Natural Buffer", 780, 300);
+  // text("Glossary", 780, 200);
+  // text("Citations", 780, 150);
+  equationSmall.resize(400, 0);
+  image(equationSmall, 200, 80);
 }
 
 function alkalosis() {
@@ -227,7 +227,7 @@ function alkalosisCauses() {
     "Alkalosis can be due to many reasons, including:\n 1. \t Consuming bases, which increases the OH- concentration. This can occur when baking soda, which contains bicarbonate, is accidentally consumed, or when one overdoses on antacids. \n 2. \t Decrease of carbon dioxide (CO2), which has a separate equilibrium with carbonic acid, preventing the formation of carbonic acid (H2CO3), decreasing the amount of acid while the existing OH- ions remain. This raises the pH. Hyperventilation is a possible cause of carbon dioxide decrease.",
     30,
     100,
-    780
+    750
   );
   biCarbGraph.resize(300, 0);
   image(biCarbGraph, 40, 230);
