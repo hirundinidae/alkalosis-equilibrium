@@ -10,7 +10,7 @@ function preload() {
   closedsystem = loadImage("assets/closedsystem.png");
   thermometer = loadImage("assets/thermometer.png");
   denaturation = loadImage("assets/denaturation.gif");
-  font = loadFont("assets/static/Montserrat-Light.ttf");
+  font = loadFont("assets/static/Montserrat-Regular.ttf");
 }
 
 function setup() {
