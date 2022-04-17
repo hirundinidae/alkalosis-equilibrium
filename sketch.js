@@ -23,6 +23,7 @@ function draw() {
   background("#F4CCCC");
   drawBackground();
   if (state != 0) textBox();
+  checkCursor();
   if (state == 0) {
     titleCard();
   } else if (state == 1) {
@@ -40,13 +41,20 @@ function draw() {
   } else if (state == 7) {
     bibliography();
   }
-  changeCursor();
 }
 
-function changeCursor() {
+function checkCursor() {
   if (state != 0) {
     if (mouseX >= 760 && mouseX <= 780 && mouseY >= 30 && mouseY <= 50) {
       cursor(HAND);
+      fill(255);
+      rect(755,25,25,33);
+      fill(255,0,0);
+      textAlign(LEFT);
+      textStyle(BOLD);
+      textSize(24);
+      text("X", 760, 50);
+      textStyle(NORMAL);
     }
     else
     cursor(AUTO);
@@ -59,7 +67,9 @@ function changeCursor() {
         mouseY <= clicks[i][1] + clicks[i][3]
       ) {
         cursor(HAND);
-        return; 
+        fill(253, 255, 133,100);
+        rect(clicks[i][0],clicks[i][1],clicks[i][2],clicks[i][3]);
+        return;
       }
     }
     cursor(AUTO);
@@ -87,6 +97,7 @@ function mouseClicked() {
     }
   }
 }
+
 let clicks = [
   [300, 10, 200, 50], // Alkalosis
   [15, 120, 150, 40], // equilibrium
@@ -140,6 +151,7 @@ function alkalosis() {
   text("Conjugate Base", 95, 250, 780); //text(STRING, startX, startY, width of textbox)
   textSize(15);
 }
+
 function equilibrium() {
   fill(0);
   title("What is Equilibrium?");
@@ -178,6 +190,7 @@ function equilibrium() {
   text("3. A constant temperature", 190, 420, 780); //text(STRING, startX, startY, width of textbox)
   textSize(15);
 }
+
 function equilibriumBlood() {
   fill(0);
   title("Equilibrium in Blood");
@@ -218,10 +231,10 @@ function alkalosisCauses() {
   );
   biCarbGraph.resize(300, 0);
   image(biCarbGraph, 40, 230);
-  text("If bicarbonate is added", 60, 460);
+  text("If bicarbonate is added", 60, 470);
   carAcidGraph.resize(300, 0);
   image(carAcidGraph, 450, 230);
-  text("If carbonic acid is removed", 470, 460);
+  text("If carbonic acid is removed", 470, 470);
 }
 
 function buffer() {
@@ -297,33 +310,30 @@ function title(titleText) {
   fill(0);
   textAlign(CENTER);
   textWrap(WORD);
-  text(titleText, 400, 50);
+  text(titleText, 400, 60);
 }
 
 function textBox() {
   fill(244, 146, 146, 240);
   rect(10, 10, 780, 480);
-  //fill(255);
-  //rect(760,20,30);
   fill(0);
   textAlign(LEFT);
-  // textAlign(LEFT, TOP);
   textSize(24);
   text("X", 760, 50);
 }
 
-var cells = [
+let cells = [
   [150, 110],
   [70, 350],
   [300, 260],
   [340, 80],
-  [470, 110],
+  [500, 110],
   [400, 360],
   [600, 310],
   [730, 80]
 ];
 function drawBackground() {
-  for (var i = 0; i < cells.length; ++i) {
+  for (let i = 0; i < cells.length; ++i) {
     bloodCell(cells[i][0], cells[i][1], 0);
   }
   fill(255, 255, 255, 90);
