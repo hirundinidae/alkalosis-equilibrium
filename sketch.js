@@ -36,7 +36,7 @@ function preload() {
   denaturation = loadImage("assets/denaturation.gif");
   references = loadImage("assets/references.png");
   imageRef = loadImage("assets/imageReferences.png");
-  font = loadFont("assets/static/Montserrat-Regular.ttf");
+  font = loadFont("assets/Montserrat-Regular.ttf");
 }
 
 function setup() {
