@@ -40,6 +40,31 @@ function draw() {
   } else if (state == 7) {
     bibliography();
   }
+  changeCursor();
+}
+
+function changeCursor() {
+  if (state != 0) {
+    if (mouseX >= 760 && mouseX <= 780 && mouseY >= 30 && mouseY <= 50) {
+      cursor(HAND);
+    }
+    else
+    cursor(AUTO);
+  } else if (state==0) {
+    for (let i = 0; i < clicks.length; ++i) {
+      if (
+        mouseX >= clicks[i][0] &&
+        mouseX <= clicks[i][0] + clicks[i][2] &&
+        mouseY >= clicks[i][1] &&
+        mouseY <= clicks[i][1] + clicks[i][3]
+      ) {
+        cursor(HAND);
+        return; 
+      }
+    }
+    cursor(AUTO);
+  }
+
 }
 
 function mouseClicked() {
@@ -301,6 +326,8 @@ function drawBackground() {
   for (var i = 0; i < cells.length; ++i) {
     bloodCell(cells[i][0], cells[i][1], 0);
   }
+  fill(255, 255, 255, 90);
+  rect(0, 0, 800, 500);
 }
 
 function bloodCell(x, y, pH) {
