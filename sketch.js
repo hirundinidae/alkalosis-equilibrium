@@ -1,6 +1,6 @@
 let xPos = 30;
 let xWidth = 740;
-let state = 1;
+let state = 0;
 let clicks = [
   [300, 10, 200, 50], // Alkalosis
   [15, 120, 150, 40], // equilibrium
@@ -20,6 +20,9 @@ let cells = [
   [600, 310],
   [730, 80]
 ];
+
+p5.disableFriendlyErrors = true; // disables FES
+
 function preload() {
   biCarbGraph = loadImage("assets/graph1.png");
   carAcidGraph = loadImage("assets/graph2.png");
@@ -42,7 +45,7 @@ function setup() {
 }
 
 function draw() {
-  background("#F4CCCC");
+  background(color("#F4CCCC"));
   drawBackground();
   if (state != 0) textBox();
   checkCursor();
@@ -69,9 +72,9 @@ function checkCursor() {
   if (state != 0) {
     if (mouseX >= 760 && mouseX <= 780 && mouseY >= 30 && mouseY <= 50) {
       cursor(HAND);
-      fill(255);
+      fill(color(255));
       rect(755, 25, 25, 33);
-      fill(255, 0, 0);
+      fill(color(255, 0, 0));
       textAlign(LEFT);
       textStyle(BOLD);
       textSize(24);
@@ -87,8 +90,16 @@ function checkCursor() {
         mouseY <= clicks[i][1] + clicks[i][3]
       ) {
         cursor(HAND);
-        fill(253, 255, 133, 100);
+        fill(color(253, 255, 133, 100));
         rect(clicks[i][0], clicks[i][1], clicks[i][2], clicks[i][3]);
+        return;
+      } else if (
+        mouseX >= sliderX + sliderVal - sliderRadius &&
+        mouseX <= sliderY + sliderVal + sliderRadius &&
+        mouseY >= sliderY - sliderRadius &&
+        mouseY <= sliderY + sliderRadius
+      ) {
+        cursor(HAND);
         return;
       }
     }
@@ -114,22 +125,44 @@ function mouseClicked() {
     }
   }
 }
+let sliderRadius = 15;
+let sliderX = 185;
+let sliderY = 450;
+let sliderVal = 0;
+let pH = (sliderVal - 215) / 1.686;
+function mouseDragged() {
+  if (
+    mouseX >= sliderX + sliderVal - sliderRadius &&
+    mouseX <= sliderY + sliderVal + sliderRadius &&
+    mouseY >= sliderY - sliderRadius &&
+    mouseY <= sliderY + sliderRadius
+  ) {
+    sliderVal = mouseX - 185;
+  }
+  if (mouseX <= sliderX) sliderVal = 1;
+  else if (mouseX >= 615) sliderVal = 615 - sliderX;
+}
+
+function slider() {
+  stroke(0);
+  line(sliderX, sliderY, 615, sliderY);
+  ellipse(sliderX + sliderVal, sliderY, sliderRadius);
+  noStroke();
+  textSize(12);
+  text("7.2", 185,sliderY+20);
+  text("7.4", 240, sliderY+20);
+  text("14", 615,sliderY+20);
+  text("Increase the pH to see what happens to the blood cells!",400,485);
+}
 
 function titleCard() {
   //the opening layout (before you click on anything) [idk what to call it]
   //check mouse collisions for each of the other state
-  textSize(45);
   textAlign(CENTER);
   textWrap(WORD);
-  // fill(255);
-  // rect(300, 10, 200, 50); // Alkalosis
-  // rect(15, 120, 150, 40); // equilibrium
-  // rect(15, 270, 305, 40); // in the blood
-  // rect(280, 370, 240, 40); // causes of alkalosis
-  // rect(515, 270, 280, 40); // natural buffer
-  // rect(15, 440, 110, 40); // glossary
-  // rect (665, 440,125,40); // citations
-  fill(0);
+  fill(color(0));
+  slider();
+  textSize(45);
   text("Alkalosis", 400, 50);
   textSize(24);
   text("Causes of Alkalosis", 400, 400);
@@ -156,7 +189,6 @@ function alkalosis() {
   ); //text(STRING, startX, startY, width of textbox)
   equation.resize(1000, 0);
   image(equation, 80, 190, (equation.width * 5) / 8, (equation.height * 5) / 8);
-  // image(graph, 100, 150, (graph.width * 5) / 8, (graph.height * 5) / 8);
   biCarbGraph.resize(250, 0);
   image(biCarbGraph, 90, 300);
   carAcidGraph.resize(250, 0);
@@ -167,7 +199,7 @@ function alkalosis() {
 }
 
 function equilibrium() {
-  fill(0);
+  fill(color(0));
   title("What is Equilibrium?");
   textSize(15);
   textAlign(CENTER);
@@ -206,7 +238,7 @@ function equilibrium() {
 }
 
 function equilibriumBlood() {
-  fill(0);
+  fill(color(0));
   title("Equilibrium in Blood");
   textSize(15);
   textAlign(CENTER);
@@ -332,16 +364,16 @@ function bibliography() {
 
 function title(titleText) {
   textSize(40);
-  fill(0);
+  fill(color(0));
   textAlign(CENTER);
   textWrap(WORD);
   text(titleText, 400, 60);
 }
 
 function textBox() {
-  fill(244, 146, 146, 240);
+  fill(color(244, 146, 146, 240));
   rect(10, 10, 780, 480);
-  fill(0);
+  fill(color(0));
   textAlign(LEFT);
   textSize(24);
   text("X", 760, 50);
@@ -349,9 +381,9 @@ function textBox() {
 
 function drawBackground() {
   for (let i = 0; i < cells.length; ++i) {
-    bloodCell(cells[i][0], cells[i][1], 0);
+    bloodCell(cells[i][0], cells[i][1], sliderVal-50);
   }
-  fill(255, 255, 255, 90);
+  fill(color(255, 255, 255, 90));
   rect(0, 0, 800, 500);
 }
 
