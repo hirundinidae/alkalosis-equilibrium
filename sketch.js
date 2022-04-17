@@ -22,8 +22,7 @@ let state = 0;
 function draw() {
   background("#F4CCCC");
   drawBackground();
-  if (state !=0 )
-  textBox();
+  if (state != 0) textBox();
   if (state == 0) {
     titleCard();
   } else if (state == 1) {
@@ -51,16 +50,17 @@ function mouseClicked() {
       state = 0;
     }
   } else if (state == 0) {
-    if (
-      mouseX >= 300 &&
-      mouseX <= 300 + 200 &&
-      mouseY >= 10 &&
-      mouseY <= 1 + 50
-    ) {
-      state = 1;
+    for (let i = 0; i < clicks.length; ++i) {
+      if (
+        mouseX >= clicks[i][0] &&
+        mouseX <= clicks[i][0] + clicks[i][2] &&
+        mouseY >= clicks[i][1] &&
+        mouseY <= clicks[i][1] + clicks[i][3]
+      ) {
+        state = i + 1;
+      }
     }
   }
-  console.log(mouseX, mouseY);
 }
 let clicks = [
   [300, 10, 200, 50], // Alkalosis
@@ -76,11 +76,11 @@ function titleCard() {
   textAlign(CENTER);
   textWrap(WORD);
   fill(255);
-  rect(300, 10, 200, 50); // Alkalosis
-  rect(15, 120, 150, 40); // equilibrium
-  rect(15, 270, 305, 40); // in the blood
-  rect(280, 370, 240, 40); // causes of alkalosis
-  rect(515, 270, 280, 40); // natural buffer
+  // rect(300, 10, 200, 50); // Alkalosis
+  // rect(15, 120, 150, 40); // equilibrium
+  // rect(15, 270, 305, 40); // in the blood
+  // rect(280, 370, 240, 40); // causes of alkalosis
+  // rect(515, 270, 280, 40); // natural buffer
   fill(0);
   text("Alkalosis", 400, 50);
   textSize(24);
@@ -147,10 +147,10 @@ function equilibrium() {
     (thermometer.width * 1) / 6,
     (thermometer.height * 1) / 6
   );
-  textSize(10);
-  text("1. A reversible reaction ", -235, 400, 780); //text(STRING, startX, startY, width of textbox)
-  text("2. A closed system", -20, 400, 780); //text(STRING, startX, startY, width of textbox)
-  text("3. A constant temperature", 190, 400, 780); //text(STRING, startX, startY, width of textbox)
+  textSize(14);
+  text("1. A reversible reaction ", -235, 420, 780); //text(STRING, startX, startY, width of textbox)
+  text("2. A closed system", -20, 420, 780); //text(STRING, startX, startY, width of textbox)
+  text("3. A constant temperature", 190, 420, 780); //text(STRING, startX, startY, width of textbox)
   textSize(15);
 }
 function equilibriumBlood() {
@@ -167,11 +167,11 @@ function equilibriumBlood() {
   image(
     denaturation,
     240,
-    250,
+    220,
     (denaturation.width * 6) / 5,
     (denaturation.height * 6) / 5
   );
-  textSize(10);
+  textSize(12);
   text(
     "An animation of a protein changing shape, which can be caused by a change in pH. This change in shape can affect its ability to function.",
     240,
