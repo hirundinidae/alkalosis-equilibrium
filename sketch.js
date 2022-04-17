@@ -1,5 +1,25 @@
-let biCarbGraph;
-let carAcidGraph;
+let xPos = 30;
+let xWidth = 740;
+let state = 1;
+let clicks = [
+  [300, 10, 200, 50], // Alkalosis
+  [15, 120, 150, 40], // equilibrium
+  [15, 270, 305, 40], // in the blood
+  [280, 370, 240, 40], // causes of alkalosis
+  [515, 270, 280, 40], // natural buffer
+  [15, 440, 110, 40], // glossary
+  [665, 440, 125, 40] // citations
+];
+let cells = [
+  [150, 110],
+  [70, 350],
+  [300, 260],
+  [340, 80],
+  [500, 110],
+  [400, 360],
+  [600, 310],
+  [730, 80]
+];
 function preload() {
   biCarbGraph = loadImage("assets/graph1.png");
   carAcidGraph = loadImage("assets/graph2.png");
@@ -11,6 +31,8 @@ function preload() {
   closedsystem = loadImage("assets/closedsystem.png");
   thermometer = loadImage("assets/thermometer.png");
   denaturation = loadImage("assets/denaturation.gif");
+  references = loadImage("assets/references.png");
+  imageRef = loadImage("assets/imageReferences.png");
   font = loadFont("assets/static/Montserrat-Regular.ttf");
 }
 
@@ -19,7 +41,6 @@ function setup() {
   textFont(font);
 }
 
-let state = 0;
 function draw() {
   background("#F4CCCC");
   drawBackground();
@@ -94,25 +115,20 @@ function mouseClicked() {
   }
 }
 
-let clicks = [
-  [300, 10, 200, 50], // Alkalosis
-  [15, 120, 150, 40], // equilibrium
-  [15, 270, 305, 40], // in the blood
-  [280, 370, 240, 40], // causes of alkalosis
-  [515, 270, 280, 40] // natural buffer
-];
 function titleCard() {
   //the opening layout (before you click on anything) [idk what to call it]
   //check mouse collisions for each of the other state
   textSize(45);
   textAlign(CENTER);
   textWrap(WORD);
-  fill(255);
+  // fill(255);
   // rect(300, 10, 200, 50); // Alkalosis
   // rect(15, 120, 150, 40); // equilibrium
   // rect(15, 270, 305, 40); // in the blood
   // rect(280, 370, 240, 40); // causes of alkalosis
   // rect(515, 270, 280, 40); // natural buffer
+  // rect(15, 440, 110, 40); // glossary
+  // rect (665, 440,125,40); // citations
   fill(0);
   text("Alkalosis", 400, 50);
   textSize(24);
@@ -120,12 +136,12 @@ function titleCard() {
   textAlign(LEFT);
   text("Equilibrium", 20, 150);
   text("Equilibrium In The Blood", 20, 300);
+  text("Glossary", 20, 470);
   textAlign(RIGHT);
   text("Body's Natural Buffer", 780, 300);
-  // text("Glossary", 780, 200);
-  // text("Citations", 780, 150);
-  equationSmall.resize(400, 0);
-  image(equationSmall, 200, 80);
+  text("Citations", 780, 470);
+  equationSmall.resize(500, 0);
+  image(equationSmall, 150, 80);
 }
 
 function alkalosis() {
@@ -134,22 +150,20 @@ function alkalosis() {
   textAlign(CENTER);
   text(
     "A condition where the pH of blood is too high (above 7.4). \n When alkalosis happens, there is more HCO3- (conjugate base) relative to the amount of H2CO3 (weak acid). This also increases the relative concentration of hydroxide ions OH-, making the pH of the blood higher than normal.",
-    10,
+    xPos,
     100,
-    780
+    xWidth
   ); //text(STRING, startX, startY, width of textbox)
-  image(
-    equation,
-    100,
-    190,
-    (equation.width * 5) / 8,
-    (equation.height * 5) / 8
-  );
-  image(graph, 100, 150, (graph.width * 5) / 8, (graph.height * 5) / 8);
+  equation.resize(1000, 0);
+  image(equation, 80, 190, (equation.width * 5) / 8, (equation.height * 5) / 8);
+  // image(graph, 100, 150, (graph.width * 5) / 8, (graph.height * 5) / 8);
+  biCarbGraph.resize(250, 0);
+  image(biCarbGraph, 90, 300);
+  carAcidGraph.resize(250, 0);
+  image(carAcidGraph, 450, 300);
   textSize(10);
-  text("Weak Acid", -225, 250, 780); //text(STRING, startX, startY, width of textbox)
+  text("Weak Acid", -250, 250, 780); //text(STRING, startX, startY, width of textbox)
   text("Conjugate Base", 95, 250, 780); //text(STRING, startX, startY, width of textbox)
-  textSize(15);
 }
 
 function equilibrium() {
@@ -159,9 +173,9 @@ function equilibrium() {
   textAlign(CENTER);
   text(
     "Equilibrium is a state of a chemical reaction where the rates of the forward and reverse reactions are equal. An equilibrium requires the following: ",
-    10,
+    xPos,
     125,
-    780
+    xWidth
   ); //text(STRING, startX, startY, width of textbox)
   image(
     reversible,
@@ -198,9 +212,9 @@ function equilibriumBlood() {
   textAlign(CENTER);
   text(
     "Blood contains carbonic acid H2CO3, a weak acid that dissociates into HCO3-, its conjugate base. In equilibrium, your blood has a pH of 7.2 ~ 7.4.\nIt is important to maintain equilibrium in our blood. Otherwise, the pH may change, affecting enzyme substrate binding, hormone binding, membrane transport, and more.",
-    10,
+    xPos,
     125,
-    780
+    xWidth
   ); //text(STRING, startX, startY, width of textbox)
   image(
     denaturation,
@@ -243,15 +257,15 @@ function buffer() {
   textAlign(CENTER);
   text(
     "Concerned that your blood's pH will suddenly skyrocket? Don't fear! Your blood is a buffer solution that resists small changes in acid or base. In the buffer solution, there exists both the weak acid and its conjugate base, allowing for the neutralization of any added acid or base.",
-    10,
+    xPos,
     125,
-    780
+    xWidth
   );
   text(
     " This means that, normally, your blood will be kept at a constant pH between 7.2 and 7.4. ",
-    10,
+    xPos,
     240,
-    780
+    xWidth
   );
   phscale.resize(700, 0);
   image(phscale, 50, 350);
@@ -263,46 +277,57 @@ function glossary() {
   textAlign(LEFT);
   text(
     "Carbonic Acid: a weak acid present in blood with the chemical formula H2CO3. It dissociates into bicarbonate ions and can affect the pH of blood.",
-    10,
+    xPos,
     125,
-    780
+    xWidth
   );
   text(
     "Bicarbonate: a weak acid present in blood with the chemical formula HCO3-. It is the conjugate base of carbonic acid.",
-    10,
+    xPos,
     175,
-    780
+    xWidth
   );
   text(
-    "pH: a quantitative measure of the acidity of an aqueous solution. It can be thought of as the “power of hydrogen.” Numerically, it is represented as the negative log of the concentration of hydronium ions (pH = -log[H3O+]).",
-    10,
+    "pH: a quantitative measure of the acidity of an aqueous solution. It can be thought of as the 'power of hydrogen.' Numerically, it is represented as the negative log of the concentration of hydronium ions (pH = -log[H3O+]).",
+    xPos,
     225,
-    780
+    xWidth
   );
   text(
     "Alkalosis: a condition in which the blood pH is too high.",
-    10,
+    xPos,
     295,
-    780
+    xWidth
   );
   text(
-    "Solution: a mixture containing a “minor” component (the solute) dissolved within a “major” component (the solvent).",
-    10,
+    "Solution: a mixture containing a 'minor' component (the solute) dissolved within a 'major' component (the solvent).",
+    xPos,
     325,
-    780
+    xWidth
   );
   text(
     "Basic Solution: a solution containing more OH- (hydroxide) ions than H3O+ (hydronium) ions. Its pH is above 7.",
-    10,
+    xPos,
     375,
-    780
+    xWidth
   );
   text(
     "Acidic Solution: a solution containing more H3O+ (hydronium) ions than OH- (hydroxide) ions. Its pH is below 7.",
-    10,
+    xPos,
     425,
-    780
+    xWidth
   );
+}
+
+function bibliography() {
+  title("Bibliography");
+  references.resize(750, 0);
+  image(references, 25, 100);
+  textSize(18);
+  textAlign(LEFT);
+  text("Image Sources:", 25, 360);
+  imageRef.resize(750, 0);
+  image(imageRef, 25, 375);
 }
 
 function title(titleText) {
@@ -322,16 +347,6 @@ function textBox() {
   text("X", 760, 50);
 }
 
-let cells = [
-  [150, 110],
-  [70, 350],
-  [300, 260],
-  [340, 80],
-  [500, 110],
-  [400, 360],
-  [600, 310],
-  [730, 80]
-];
 function drawBackground() {
   for (let i = 0; i < cells.length; ++i) {
     bloodCell(cells[i][0], cells[i][1], 0);
